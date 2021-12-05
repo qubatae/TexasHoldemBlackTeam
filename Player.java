@@ -1,17 +1,28 @@
 import java.util.ArrayList;
 
-public class Player {
+public class Player implements Comparable<Player>{
     Card firstCard, secondCard;
-    int money;
+    private int money;
     private int currentBet;
     private String name;
-
+    boolean active;
+    Hand pHand;
     public Player(int money, String name){
         this.money = money;
         this.name = name;
         currentBet = 0;
+        active = true;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+    public int getMoney() {
+        return money;
+    }
+    public int getCurrentBet() {
+        return currentBet;
+    }
     public Card[] GetCards(){
         return new Card[]{ firstCard, secondCard };
     }
@@ -48,22 +59,40 @@ public class Player {
         return x;
     }
 
-    public boolean blind(int value) { //forced bet: smallblind or bigblind
-
-        money
+    public void blind(int value) {
+        assert currentBet == 0;
+        money += currentBet;
+        currentBet = Math.min(value, money);
+        money -= currentBet;
     }
-    public boolean raise(int value) { // check if value > 0 and player has enough money
-        if (value <= currentBet || value > money)
+    public boolean raise(int value, final int currentStake) { // player adds value money to the table
+        if (value > money + currentBet || value <= currentStake) {
             return false;
+        }
+        money += currentBet;
+        currentBet = value;
+        money -= currentBet;
+        return true;
     }
-    public boolean check(int value) {
-        ...
+
+    public boolean check(final int currentStake) {
+        if (currentStake > money + currentBet) {
+            return false;
+        }
+        money += currentBet;
+        currentBet = currentStake;
+        money -= currentBet;
+        return true;
     }
-    public boolean fold() {
-        ...
+
+    public void fold() {
+        this.active = false;
     }
-    public boolean allIn() {
-        ...
+
+    public void allIn() {
+        money += currentBet;
+        currentBet = money;
+        money -= currentBet;
     }
 
     public void Reward(int value) {
@@ -73,5 +102,16 @@ public class Player {
     @Override
     public String toString(){
         return String.format("%s \n Cards: %s, %s \n Balance: %s \n Current bet: %s \n", name, firstCard, secondCard, money, currentBet);
+    }
+
+    @Override
+    public int compareTo(Player o) {
+        if (!active && o.active)
+            return -1;
+        if (active && !o.active)
+            return 1;
+        if (active && o.active)
+            return pHand.compareTo(o.pHand);
+        return 0;
     }
 }

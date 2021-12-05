@@ -4,10 +4,11 @@ import java.util.Random;
 public class Table {
 
     int dealer;
-    int round = 0;
     Deck cards;
     ArrayList<Player> players;
     ArrayList<Card> onTable;
+    int moneyOnTable;
+    int stake;
     Table (ArrayList<Player> players) {
         this.players = players;
         Random r = new Random();
@@ -25,6 +26,8 @@ public class Table {
         onTable.add(cards.getCard());
     }
 
-
-
+    public void addMoney(int value) {
+        assert value >= 0;
+        this.moneyOnTable += value;
+    }
 }
