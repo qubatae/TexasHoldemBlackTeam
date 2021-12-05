@@ -48,11 +48,17 @@ public class Player {
         return x;
     }
 
-    public class Bets {
-        public void raise(){}
-        public void check(){}
-        public void fold(){}
-        public void allIn(){}
+    public boolean raise(int value) { // check if value > 0 and player has enough money
+        ...
+    }
+    public boolean check() {
+        ...
+    }
+    public boolean fold() {
+        ...
+    }
+    public boolean allIn() {
+        ...
     }
 
     public void Reward(int value) {

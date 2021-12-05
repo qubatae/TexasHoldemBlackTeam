@@ -90,8 +90,7 @@ public class Game {
         ...
     }
 
-    public void resolveBet() {
-
+    public void resolveBet(Player p) {
         String type = in.next();
         int value;
         switch (type) {
@@ -101,7 +100,7 @@ public class Game {
             case "raise":
                 printGreen("Type value");
                 value = in.nextInt();
-
+                p.raise(value);
                 break;
             case "check":
                 break;
@@ -137,7 +136,7 @@ public class Game {
                     passControl();
                 } else {
                     printGreen("Type your bet, or type 'options' to see your betting options");
-                    resolveBet();
+                    resolveBet(p);
                 }
             }
         } catch (NoMoreCardsException ee) {
