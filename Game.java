@@ -21,6 +21,9 @@ public class Game {
     public static void printGreen(String text) {
         System.out.println(TEXT_GREEN + text + TEXT_RESET);
     }
+    private void printBlue(String text) {
+        System.out.println(TEXT_BLUE + text + TEXT_RESET);
+    }
     public static void debug(String text) {
         System.out.println(TEXT_YELLOW + text + TEXT_RESET);
     }
@@ -138,7 +141,7 @@ public class Game {
                 }
                 case "all-in" -> {
                     oldBet = p.getCurrentBet();
-                    int allMoney = p.getMoney();
+                    int allMoney = p.getMoney() + p.getCurrentBet();
                     p.allIn();
                     table.addMoney(allMoney - oldBet);
                     table.stake = Math.max(table.stake, allMoney);
@@ -166,6 +169,8 @@ public class Game {
         if (p.active) {
             printGreen("Type your bet, or type 'options' to see your betting options");
             resolveBet(p);
+        } else {
+            printBlue(p.getName() + "is inactive");
         }
         if (oldStake == table.stake) {
             noPlayersMatchingStake++;
@@ -173,6 +178,8 @@ public class Game {
             noPlayersMatchingStake = 1;
         }
     }
+
+
 
     public void betting() {
         while (true) {
@@ -249,12 +256,12 @@ public class Game {
             for (Player p : table.players) {
                 printGreen(p.getName());
                 if (p.isActive())
-                    printGreen("their cards: " + p.firstCard.toString() + p.secondCard.toString());
+                    printGreen("their cards: " + p.firstCard.toString() + " " + p.secondCard.toString());
                 else
                     printGreen("is not active");
             }
             printGreen("cards on table are " + table.onTable.toString());
-            printGreen(bestPlayer.getName() + "won and gets" + table.moneyOnTable);
+            printGreen(bestPlayer.getName() + "won and gets " + table.moneyOnTable);
 
             bestPlayer.Reward(table.moneyOnTable);
 
