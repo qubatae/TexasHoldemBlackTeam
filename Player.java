@@ -49,12 +49,14 @@ public class Player {
     }
 
     public boolean blind(int value) { //forced bet: smallblind or bigblind
-        ...
+
+        money
     }
     public boolean raise(int value) { // check if value > 0 and player has enough money
-        ...
+        if (value <= currentBet || value > money)
+            return false;
     }
-    public boolean check() {
+    public boolean check(int value) {
         ...
     }
     public boolean fold() {

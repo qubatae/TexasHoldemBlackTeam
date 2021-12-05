@@ -140,6 +140,9 @@ public class Game {
                     resolveBet(p);
                 }
             }
+            ...
+            currentPhase = Phase.flop;
+            ...
         } catch (NoMoreCardsException ee) {
             printRed("no more cards ?!");
         }
