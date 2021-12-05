@@ -42,7 +42,7 @@ public class Player implements Comparable<Player>{
     public void clearCards(){
         firstCard = secondCard = null;
     }
-
+    public void clearBet() {currentBet = 0;}
     public boolean SetBet(int x)
     {
         if(x > money){
@@ -59,11 +59,12 @@ public class Player implements Comparable<Player>{
         return x;
     }
 
-    public void blind(int value) {
+    public int blind(int value) {
         assert currentBet == 0;
         money += currentBet;
         currentBet = Math.min(value, money);
         money -= currentBet;
+        return currentBet;
     }
     public boolean raise(int value, final int currentStake) { // player adds value money to the table
         if (value > money + currentBet || value <= currentStake) {
@@ -97,6 +98,10 @@ public class Player implements Comparable<Player>{
 
     public void Reward(int value) {
         money += value;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

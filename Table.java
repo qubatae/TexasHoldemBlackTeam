@@ -15,6 +15,7 @@ public class Table {
         dealer = r.nextInt(players.size());
         cards = new Deck();
         cards.reset();
+        onTable = new ArrayList<>();
     }
     public void dealCardsToPlayers() throws NoMoreCardsException {
         for (Player player : players) {
@@ -29,5 +30,9 @@ public class Table {
     public void addMoney(int value) {
         assert value >= 0;
         this.moneyOnTable += value;
+    }
+    @Override
+    public String toString() {
+        return String.format("Cards on table: %s\n money on table: %s \n current stake: %s \n", onTable.toString(), moneyOnTable, stake);
     }
 }
