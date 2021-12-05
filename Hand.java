@@ -213,10 +213,12 @@ public class Hand implements Comparable<Hand> {
     }
 
     public static Hand FindHand(ArrayList<Card> cards) {
-        Hand currentHand = new Hand(HandType.HIGHCARD, cards.get(0).getValue());
+        
 
         for(int i = 0; i < 7; i++)
             for(int j = i + 1; j < 7; j++) if(cards.get(i).compareTo(cards.get(j)) > 0) Collections.swap(cards, i, j);
+        
+        Hand currentHand = new Hand(HandType.HIGHCARD, cards.get(6).getValue());
 
         for(int i = 0; i < 128; i++) if(Integer.bitCount(i) == 5) {
 
