@@ -1,5 +1,3 @@
-package sample;
-
 import java.util.ArrayList;
 
 public class Hand implements Comparable<Hand> {
@@ -21,7 +19,7 @@ public class Hand implements Comparable<Hand> {
         return handType;
     }
 
-    public Value GetValue(){
+    public Card.Value GetValue(){
         return maxValue;
     }
 
@@ -51,9 +49,9 @@ public class Hand implements Comparable<Hand> {
         }
     }
     private HandType handType;
-    private Value maxValue;
+    private Card.Value maxValue;
 
-    public Hand(HandType type, Value value)
+    public Hand(HandType type, Card.Value value)
     {
         handType = type;
         maxValue = value;

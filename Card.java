@@ -1,5 +1,3 @@
-package sample;
-
 public class Card {
     Suite suite;
     Value value;
