@@ -19,7 +19,7 @@ public class Hand implements Comparable<Hand> {
         return handType;
     }
 
-    public Card.Value GetValue(){
+    public Value GetValue(){
         return maxValue;
     }
 
