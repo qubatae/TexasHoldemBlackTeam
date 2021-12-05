@@ -86,8 +86,36 @@ public class Game {
         this.table = new Table(readPlayers());
     }
 
-    public void betting() {
+    public void printOptions() {
+        ...
+    }
 
+    public void resolveBet() {
+
+        String type = in.next();
+        int value;
+        switch (type) {
+            case "options":
+                printOptions();
+                break;
+            case "raise":
+                printGreen("Type value");
+                value = in.nextInt();
+
+                break;
+            case "check":
+                break;
+            case "fold":
+                break;
+            case "all-in":
+                break;
+            default:
+                printRed("invalid bet");
+        }
+    }
+    public void passControl() {
+        printGreen("Type something to end your move and pass control to another player");
+        String sth = in.next();
     }
 
     public void playRound() {
@@ -95,15 +123,21 @@ public class Game {
             currentPhase = Phase.preFlop;
             table.dealCardsToPlayers();
             for (int i = table.dealer + 1; i <= table.players.size() + table.dealer; i++) {
+
                 Player p = table.players.get(i);
-                if (i == table.dealer + 1) {//SMALLBLIND
+                if (i == table.dealer + 1) {
+                    printGreen("You are Smallblind");
                     p.SetBet(smallBlind); //TODO handle ALLIN, in this case when player does not have money for smallblind
                     p.Bet();
-                } else if (i == table.dealer) {//BIGBLIND
+                    passControl();
+                } else if (i == table.dealer) {
+                    printGreen("You are BigBlind");
                     p.SetBet(2*smallBlind);
                     p.Bet();
+                    passControl();
                 } else {
-                    
+                    printGreen("Type your bet, or type 'options' to see your betting options");
+                    resolveBet();
                 }
             }
         } catch (NoMoreCardsException ee) {
