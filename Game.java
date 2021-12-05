@@ -103,10 +103,13 @@ public class Game {
                 p.raise(value);
                 break;
             case "check":
+                p.check();
                 break;
             case "fold":
+                p.fold();
                 break;
             case "all-in":
+                p.allIn();
                 break;
             default:
                 printRed("invalid bet");
@@ -126,13 +129,11 @@ public class Game {
                 Player p = table.players.get(i);
                 if (i == table.dealer + 1) {
                     printGreen("You are Smallblind");
-                    p.SetBet(smallBlind); //TODO handle ALLIN, in this case when player does not have money for smallblind
-                    p.Bet();
+                    p.blind(smallBlind);
                     passControl();
                 } else if (i == table.dealer) {
                     printGreen("You are BigBlind");
-                    p.SetBet(2*smallBlind);
-                    p.Bet();
+                    p.blind(2*smallBlind);
                     passControl();
                 } else {
                     printGreen("Type your bet, or type 'options' to see your betting options");

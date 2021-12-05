@@ -48,6 +48,9 @@ public class Player {
         return x;
     }
 
+    public boolean blind(int value) { //forced bet: smallblind or bigblind
+        ...
+    }
     public boolean raise(int value) { // check if value > 0 and player has enough money
         ...
     }
