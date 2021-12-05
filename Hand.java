@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import java.util.ArrayList;
+
 public class Hand implements Comparable<Hand> {
     @Override
     public int compareTo(Hand o)
@@ -8,9 +10,9 @@ public class Hand implements Comparable<Hand> {
             return 1;
         if(handType.GetValue() < o.GetType().GetValue())
             return -1;
-        if(maxValue.GetValue() > o.GetValue().GetValue())
+        if(maxValue.value > o.GetMaxValue().value)
             return 1;
-        if(maxValue.GetValue() < o.GetValue().GetValue())
+        if(maxValue.value < o.GetMaxValue().value)
             return -1;
         return 0;
     }
@@ -19,7 +21,7 @@ public class Hand implements Comparable<Hand> {
         return handType;
     }
 
-    public Value GetValue(){
+    public Card.Value GetMaxValue(){
         return maxValue;
     }
 
@@ -59,7 +61,7 @@ public class Hand implements Comparable<Hand> {
 
     public static Hand FindHand(ArrayList<Card> cards)
     {
-        Hand currentHand = new Hand(HandType.HIGHCARD, cards.get(0).GetValue());
-
+//        Hand currentHand = new Hand(HandType.HIGHCARD, cards.get(0).GetValue());
+        return null;
     }
 }

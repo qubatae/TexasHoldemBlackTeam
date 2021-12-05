@@ -1,15 +1,20 @@
-public class Card {
+public class Card implements Comparable<Card>{
     Suite suite;
     Value value;
     Card (Suite suite, Value value) {
         this.suite = suite;
         this.value = value;
     }
+    @Override
+    public int compareTo(Card o) {
+        return this.value.value - o.value.value;
+    }
+
     enum Suite {
         clubs, diamonds, hearts, spades
     }
     enum Value {
-        ace(1),
+
         two(2),
         three(3),
         four(4),
@@ -21,9 +26,10 @@ public class Card {
         ten(10),
         jack(11),
         queen(12),
-        king(13);
+        king(13),
+        ace(14);
 
-        private Value(int value) {
+        Value(int value) {
             this.value = value;
         }
 

@@ -15,13 +15,13 @@ public class Table {
         cards = new Deck();
         cards.reset();
     }
-    public void dealCardsToPlayers() throws Exception {
+    public void dealCardsToPlayers() throws NoMoreCardsException {
         for (Player player : players) {
             player.AddCard(cards.getCard());
             player.AddCard(cards.getCard());
         }
     }
-    public void putCardOnTable() throws Exception{
+    public void putCardOnTable() throws NoMoreCardsException {
         onTable.add(cards.getCard());
     }
 

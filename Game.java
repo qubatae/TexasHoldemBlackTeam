@@ -11,14 +11,30 @@ public class Game {
         showDown;
     }
 
-
+    Scanner in;
+    Integer noPlayers;
+    Game () {
+        this.in = new Scanner(System.in);
+    }
     int round_no = 0;
-    public void registerPlayers (ArrayList<Player> players) throws Exception{
-//        String name = System.in.re;
+
+    public ArrayList<Player> readPlayers() {
+        System.out.println("Type number of players: this should be <= 10");
+        noPlayers = in.nextInt();
+        while (noPlayers > 10 || noPlayers < 0) {
+            System.out.println("Value of players is incorrect");
+            noPlayers = in.nextInt();
+        }
+        String playerName = in.next();
+        ArrayList<Player> players = new ArrayList<>();
+        return  players;
+    }
+    public void registerPlayers (ArrayList<Player> players) throws Exception {
+
     }
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        String name = in.next();
-        System.out.println(name);
+        Game game = new Game();
+        game.readPlayers();
+
     }
 }

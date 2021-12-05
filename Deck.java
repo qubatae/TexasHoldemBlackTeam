@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
+class NoMoreCardsException extends Exception {};
+
 public class Deck {
     ArrayList<Card> cards;
     private int index = 0;
@@ -15,9 +17,9 @@ public class Deck {
     public void shuffle() {
         Collections.shuffle(cards);
     }
-    public Card getCard() throws Exception {
+    public Card getCard() throws NoMoreCardsException {
         if (index >= cards.size()) {
-            throw new Exception();
+            throw new NoMoreCardsException();
         }
         return cards.get(index++);
     }
