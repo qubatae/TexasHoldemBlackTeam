@@ -278,6 +278,7 @@ public class Game {
             }
             table.dealer = (table.dealer + 1) % table.players.size();
             table.cards.reset();
+            table.reset();
 
         } catch (NoMoreCardsException ee) {
             printRed("no more cards ?!");

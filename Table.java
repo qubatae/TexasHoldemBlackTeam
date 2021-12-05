@@ -26,7 +26,9 @@ public class Table {
     public void putCardOnTable() throws NoMoreCardsException {
         onTable.add(cards.getCard());
     }
-
+    public void reset() {
+        onTable.clear();
+    }
     public void addMoney(int value) {
         assert value >= 0;
         this.moneyOnTable += value;
